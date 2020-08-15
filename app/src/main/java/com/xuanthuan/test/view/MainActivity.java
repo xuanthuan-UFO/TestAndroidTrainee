@@ -14,6 +14,8 @@ import com.xuanthuan.test.inter.LoginResult;
 import com.xuanthuan.test.viewmodel.Login;
 import com.xuanthuan.test.viewmodel.LoginFactory;
 
+import java.util.Observable;
+
 public class MainActivity extends AppCompatActivity implements LoginResult {
     Login login;
     ActivityMainBinding activityMainBinding;
@@ -44,5 +46,11 @@ public class MainActivity extends AppCompatActivity implements LoginResult {
     @Override
     public void onError(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
+
+    @Override
+    public void update(Observable o, Object arg) {
+
     }
 }

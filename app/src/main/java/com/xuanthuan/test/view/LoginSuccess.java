@@ -5,10 +5,13 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.ViewModelProviders;
 
 import com.xuanthuan.test.R;
-import com.xuanthuan.test.databinding.ActivityMainBinding;
+import com.xuanthuan.test.databinding.ActivityLoginSuccessBinding;
 import com.xuanthuan.test.inter.LogoutResult;
+import com.xuanthuan.test.viewmodel.Logout;
+import com.xuanthuan.test.viewmodel.LogoutlFactory;
 
 public class LoginSuccess extends AppCompatActivity implements LogoutResult {
 
@@ -16,14 +19,15 @@ public class LoginSuccess extends AppCompatActivity implements LogoutResult {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        ActivityMainBinding activityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_login_success);
 
-        /*
-        activityMainBinding.setViewmodel(ViewModelProviders.of(
+        ActivityLoginSuccessBinding activityLoginSuccessBinding = DataBindingUtil.setContentView(this, R.layout.activity_login_success);
+
+
+        activityLoginSuccessBinding.setViewmodel(ViewModelProviders.of(
                 this,
                 new LogoutlFactory(this)
         ).get(Logout.class));
-        */
+
     }
 
 
