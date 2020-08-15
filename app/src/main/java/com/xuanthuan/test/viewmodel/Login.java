@@ -14,11 +14,11 @@ import com.xuanthuan.test.model.User;
 
 public class Login extends ViewModel {
     Context context;
-LoginResult loginResult;
-User user;
+    LoginResult loginResult;
+    User user;
     private boolean check_box;
-String KEY_email = "email";
-String KEY_password = "password";
+    String KEY_email = "email";
+    String KEY_password = "password";
 
     public MutableLiveData<String> uName = new MutableLiveData<>();
     public MutableLiveData<String> password = new MutableLiveData<>();
@@ -31,13 +31,14 @@ String KEY_password = "password";
         user.setPassword(getSpPassword());
     }
 
+
     public void onCheckedChange(CompoundButton button, boolean check) {
         check_box = check;
     }
 
-    public void clickLogin(View view){
-        user = new User(uName.getValue(), password.getValue());
+    public void clickLogin(View view) {
 
+        user = new User(uName.getValue(), password.getValue());
         Log.d("thuan", "clickLogin: " + user.getUname() + user.getPassword());
 //        userMutableLiveData.setValue(user);
         int checkAcount = user.checkPassword(context);
@@ -58,6 +59,8 @@ String KEY_password = "password";
             if (check_box) {
                 editor.putString(KEY_email, user.getUname());
                 editor.putString(KEY_password, user.getPassword());
+                editor.apply();
+                editor.commit();
             } else {
                 editor.clear();
             }
@@ -66,14 +69,12 @@ String KEY_password = "password";
     }
 
     public String getSpuName() {
-        SharedPreferences preferences = context.getSharedPreferences("USER_FILE", Context.MODE_PRIVATE);
+        SharedPreferences preferences = context.getSharedPreferences("Account", Context.MODE_PRIVATE);
         return preferences.getString(KEY_email, "");
     }
 
     public String getSpPassword() {
-        SharedPreferences preferences = context.getSharedPreferences("USER_FILE", Context.MODE_PRIVATE);
+        SharedPreferences preferences = context.getSharedPreferences("Account", Context.MODE_PRIVATE);
         return preferences.getString(KEY_password, "");
     }
-
-
 }

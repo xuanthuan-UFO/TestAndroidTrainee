@@ -1,5 +1,6 @@
 package com.xuanthuan.test.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -24,18 +25,20 @@ public class MainActivity extends AppCompatActivity implements LoginResult {
         activityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         //activityMainBinding.setLifecycleOwner(this);
 
-        login =new Login(this, getApplicationContext());
-
         activityMainBinding.setViewmodel(ViewModelProviders.of(
                 this,
                 new LoginFactory(this, getApplicationContext())
         ).get(Login.class));
+
+        login =new Login(this, getApplicationContext());
 
     }
 
     @Override
     public void onSuccess(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(MainActivity.this, LoginSuccess.class));
+        finish();
     }
 
     @Override
