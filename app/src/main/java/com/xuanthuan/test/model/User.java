@@ -8,7 +8,6 @@ import java.util.regex.Pattern;
 
 public class User {
     String uname, password;
-    boolean check;
 
     public User() {
     }

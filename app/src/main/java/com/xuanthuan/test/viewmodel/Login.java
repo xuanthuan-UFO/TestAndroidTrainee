@@ -37,8 +37,8 @@ public class Login extends ViewModel {
     }
 
     public void clickLogin(View view) {
-
-        user = new User(uName.getValue(), password.getValue());
+        user.setUname(uName.getValue());
+        user.setPassword(password.getValue());
         Log.d("thuan", "clickLogin: " + user.getUname() + user.getPassword());
 //        userMutableLiveData.setValue(user);
         int checkAcount = user.checkPassword(context);
@@ -59,7 +59,6 @@ public class Login extends ViewModel {
             if (check_box) {
                 editor.putString(KEY_email, user.getUname());
                 editor.putString(KEY_password, user.getPassword());
-                editor.apply();
                 editor.commit();
             } else {
                 editor.clear();
