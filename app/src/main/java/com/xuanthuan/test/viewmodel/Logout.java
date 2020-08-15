@@ -19,7 +19,7 @@ public class Logout extends ViewModel {
 
     public void onClick(View view){
         logoutResult.Logout("đăng xuất");
-        SharedPreferences sharedPreferences = view.getContext().getSharedPreferences("Acount", MODE_PRIVATE);
+        SharedPreferences sharedPreferences = view.getContext().getSharedPreferences("Account", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.clear();
         editor.commit();
