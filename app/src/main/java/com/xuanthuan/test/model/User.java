@@ -1,12 +1,14 @@
 package com.xuanthuan.test.model;
 
+import android.content.Context;
 import android.text.TextUtils;
+import android.util.Patterns;
 
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class User {
     String uname, password;
+    boolean check;
 
     public User() {
     }
@@ -32,13 +34,22 @@ public class User {
         this.password = password;
     }
 
-    public boolean checkPassword(){
+    public int checkPassword(Context context){
         String regex = "^(?=.*[0-9])"
                 + "(?=.*[@#$%^&+=])"
                 + "(?=\\S+$).{6,20}$";
-        Pattern p = Pattern.compile(regex);
-        Matcher m = p.matcher(getPassword());
 
-        return m.matches();
+
+        if (TextUtils.isEmpty(getUname())) {
+            return 0;
+        } else if (TextUtils.isEmpty(getPassword())) {
+            return 1;
+        } else if (!Patterns.EMAIL_ADDRESS.matcher(getUname()).matches()) {
+            return 2;
+        } else if (!Pattern.compile(regex).matcher(getPassword()).matches()) {
+            return 3;
+        } else {
+            return -1;
+        }
     }
 }
